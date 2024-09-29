@@ -6,7 +6,7 @@ import json
 import sys
 import threading
 import logging
-from termcolor import colored
+from termcolor import colored, cprint, Style
 
 # Setup logger
 logging.basicConfig(filename='recon_log.log', level=logging.DEBUG, 
@@ -97,7 +97,7 @@ def scan_ports(URL_TARGET):
     remove_tmp_files("txt")
     print(colored(f"\n\t[+] OPENED PORTS: {len(ports_list)}", 'blue', attrs=['bold']))
     for p in ports_list:
-        print(f"\t    {colored('↳', 'cyan')} {colored(p, 'bold')}")
+        print(f"\t    {colored('↳', 'cyan')} {Style.BRIGHT}{p}{Style.RESET_ALL}")
 
 def get_subdomains(URL_TARGET):
     subfinder_cmd = f"subfinder -d {URL_TARGET} -o .tmp_subfinder.txt -silent > /dev/null"
